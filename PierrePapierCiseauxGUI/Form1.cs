@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace PierrePapierCiseauxGUI
@@ -24,11 +25,95 @@ namespace PierrePapierCiseauxGUI
         public Form1()
         {
             InitializeComponent();
+            StyleManager.ApplyComicStyle(this);
+            StyleManager.AjusterBoutons(this);
+            this.MinimumSize = new Size(800, 600); // Taille minimale de la fenêtre
+            InitializeTableLayoutPanel();  // Initialisation du TableLayoutPanel
+
             InitializeTimer(); // Timer du joueur
             InitializeTimerOrdinateur();  // Nouveau Timer pour l'ordinateur
             BtnPierre.Click += BtnPierre_Click;
             BtnCiseaux.Click += BtnCiseaux_Click;
             BtnPapier.Click += BtnPapier_Click;
+        }
+
+        // Initialisation du TableLayoutPanel
+        private void InitializeTableLayoutPanel()
+        {
+            // Création du TableLayoutPanel
+            this.tableLayoutPanel = new TableLayoutPanel
+            {
+                ColumnCount = 2, // Une seule colonne
+                RowCount = 6,    // 5 lignes pour les 5 éléments
+                Dock = DockStyle.Fill,
+                Padding = new Padding(10), // Marge autour du TableLayoutPanel
+                CellBorderStyle = TableLayoutPanelCellBorderStyle.None
+            };
+
+            // Définir les styles des lignes et des colonnes
+            this.tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));  // Colonne gauche pour LblOrdinateur
+            this.tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));  // Colonne droite pour d'autres éléments
+            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));  // Zone du score
+            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));  // Espace entre le score et les boutons
+            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));  // Espace entre les boutons
+            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));  // Espace entre les boutons
+            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));  // Espace entre les boutons
+            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));  // Zone pour le timer et autres éléments
+
+            // Ajouter LblOrdinateur à la cellule appropriée
+            //this.tableLayoutPanel.Controls.Add(LblOrdinateur, 1, 1); // LblOrdinateur dans la première colonne et première ligne
+            //LblOrdinateur.TextAlign = ContentAlignment.MiddleLeft;  // Aligner à gauche en ligne
+            //this.tableLayoutPanel.SetColumnSpan(LblOrdinateur, 2); // S'étendre sur les deux colonnes pour être centré verticalement
+
+                // Création du FlowLayoutPanel pour l'ensemble du jeu
+                FlowLayoutPanel flowLayoutPanel = new FlowLayoutPanel
+                {
+                    Dock = DockStyle.Fill,
+                    FlowDirection = FlowDirection.TopDown, // Alignement vertical
+                    AutoScroll = true, // Permet d'ajouter une barre de défilement si nécessaire
+                    Padding = new Padding(10), // Marge autour du FlowLayoutPanel
+                    WrapContents = false // Empêche le retour à la ligne
+                };
+
+                // Créer un FlowLayoutPanel pour l'ordinateur, pour qu'il soit centré en colonne et à gauche en ligne
+                FlowLayoutPanel ordinateurPanel = new FlowLayoutPanel
+                {
+                    FlowDirection = FlowDirection.LeftToRight, // Aligner horizontalement
+                    Dock = DockStyle.Fill,
+                    AutoSize = true,
+                    Margin = new Padding(10),  // Marge autour de l'élément
+                    Padding = new Padding(10) // Espacement interne
+                };
+                
+                // Ajouter LblOrdinateur au FlowLayoutPanel
+                ordinateurPanel.Controls.Add(LblOrdinateur);
+                // Ajouter le Label Score au FlowLayoutPanel
+                flowLayoutPanel.Controls.Add(LblScore); // L'afficher en haut
+                flowLayoutPanel.Controls.Add(ordinateurPanel); // Ajouter le panneau avec LblOrdinateur
+
+                // Créer un FlowLayoutPanel pour les boutons
+                FlowLayoutPanel buttonsPanel = new FlowLayoutPanel
+                    {
+                        FlowDirection = FlowDirection.LeftToRight, // Aligner les boutons horizontalement
+                        Dock = DockStyle.Top,  // Le positionner tout en haut
+                        AutoSize = true,
+                        Padding = new Padding(10), // Marge autour des boutons
+                        Margin = new Padding(10)
+                    };
+
+                // Ajouter les boutons au FlowLayoutPanel des boutons
+                buttonsPanel.Controls.Add(BtnPierre);
+                buttonsPanel.Controls.Add(BtnCiseaux);
+                buttonsPanel.Controls.Add(BtnPapier);
+
+                // Ajouter les panels dans le FlowLayoutPanel principal
+                flowLayoutPanel.Controls.Add(buttonsPanel);  // Ajoute les boutons en bas de l'écran
+
+                // Ajouter le FlowLayoutPanel au formulaire
+                this.Controls.Add(flowLayoutPanel);
+
+            // Ajouter le TableLayoutPanel au formulaire
+            this.Controls.Add(this.tableLayoutPanel);
         }
 
         // Initialisation du timer pour le joueur

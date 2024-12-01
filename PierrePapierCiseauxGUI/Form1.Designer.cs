@@ -42,18 +42,18 @@
             // 
             // BtnPierre
             // 
-            this.BtnPierre.Location = new System.Drawing.Point(244, 107);
+            this.BtnPierre.Location = new System.Drawing.Point(3, 24);
             this.BtnPierre.Name = "BtnPierre";
-            this.BtnPierre.Size = new System.Drawing.Size(75, 23);
+            this.BtnPierre.Size = new System.Drawing.Size(75, 15);
             this.BtnPierre.TabIndex = 0;
             this.BtnPierre.Text = "Pierre";
             this.BtnPierre.UseVisualStyleBackColor = true;
             // 
             // BtnCiseaux
             // 
-            this.BtnCiseaux.Location = new System.Drawing.Point(363, 107);
+            this.BtnCiseaux.Location = new System.Drawing.Point(3, 45);
             this.BtnCiseaux.Name = "BtnCiseaux";
-            this.BtnCiseaux.Size = new System.Drawing.Size(75, 23);
+            this.BtnCiseaux.Size = new System.Drawing.Size(75, 15);
             this.BtnCiseaux.TabIndex = 1;
             this.BtnCiseaux.Text = "Ciseaux";
             this.BtnCiseaux.UseVisualStyleBackColor = true;
@@ -61,9 +61,9 @@
             // 
             // BtnPapier
             // 
-            this.BtnPapier.Location = new System.Drawing.Point(472, 107);
+            this.BtnPapier.Location = new System.Drawing.Point(3, 66);
             this.BtnPapier.Name = "BtnPapier";
-            this.BtnPapier.Size = new System.Drawing.Size(75, 23);
+            this.BtnPapier.Size = new System.Drawing.Size(75, 15);
             this.BtnPapier.TabIndex = 2;
             this.BtnPapier.Text = "Papier";
             this.BtnPapier.UseVisualStyleBackColor = true;
@@ -80,7 +80,7 @@
             // LblScore
             // 
             this.LblScore.AutoSize = true;
-            this.LblScore.Location = new System.Drawing.Point(244, 170);
+            this.LblScore.Location = new System.Drawing.Point(307, 356);
             this.LblScore.Name = "LblScore";
             this.LblScore.Size = new System.Drawing.Size(175, 13);
             this.LblScore.TabIndex = 5;
@@ -89,7 +89,7 @@
             // LblOrdinateur
             // 
             this.LblOrdinateur.AutoSize = true;
-            this.LblOrdinateur.Location = new System.Drawing.Point(81, 107);
+            this.LblOrdinateur.Location = new System.Drawing.Point(24, 188);
             this.LblOrdinateur.Name = "LblOrdinateur";
             this.LblOrdinateur.Size = new System.Drawing.Size(0, 13);
             this.LblOrdinateur.TabIndex = 6;
@@ -121,7 +121,7 @@
             // LblTimer
             // 
             this.LblTimer.AutoSize = true;
-            this.LblTimer.Location = new System.Drawing.Point(512, 49);
+            this.LblTimer.Location = new System.Drawing.Point(3, 84);
             this.LblTimer.Name = "LblTimer";
             this.LblTimer.Size = new System.Drawing.Size(0, 13);
             this.LblTimer.TabIndex = 7;
@@ -137,6 +137,7 @@
             this.Controls.Add(this.BtnPapier);
             this.Controls.Add(this.BtnCiseaux);
             this.Controls.Add(this.BtnPierre);
+            this.Controls.Add(this.tableLayoutPanel);
             this.Name = "Form1";
             this.Text = "Pierre-Papier-Ciseaux";
             this.ResumeLayout(false);
@@ -156,5 +157,6 @@
         private System.Windows.Forms.Label LblDefaites;
         private System.Windows.Forms.Label LblEgalites;
         private System.Windows.Forms.Label LblTimer;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
     }
 }
