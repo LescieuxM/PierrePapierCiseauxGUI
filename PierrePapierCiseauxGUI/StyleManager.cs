@@ -6,56 +6,80 @@ namespace PierrePapierCiseauxGUI
 {
     public static class StyleManager
     {
-        // Appliquer le style Comic à tout le formulaire
-        public static void ApplyComicStyle(Form form)
+        // Appliquer le style et la disposition des éléments
+        public static void ApplyStyleAndPositioning(Form form)
         {
-            // Change le fond du formulaire
-            form.BackColor = Color.Beige;
-
-            // Utiliser une police Comic pour tous les contrôles
-            Font comicFont = new Font("Comic Sans MS", 14);
-
-            // Applique le style à chaque contrôle
+            // Appliquer le style général aux contrôles du formulaire
             foreach (Control ctrl in form.Controls)
             {
                 if (ctrl is Button)
                 {
-                    ctrl.Font = comicFont;
-                    ctrl.BackColor = Color.LightCoral;
-                    ctrl.ForeColor = Color.White;
+                    ApplyButtonStyle(ctrl as Button);
                 }
                 else if (ctrl is Label)
                 {
-                    ctrl.Font = comicFont;
-                    ctrl.ForeColor = Color.Black;
+                    ApplyLabelStyle(ctrl as Label);
                 }
             }
+
+            // Positionner les éléments manuellement dans le Formulaire
+            PositionElements(form);
         }
 
-        // Ajuster les propriétés des boutons (public pour pouvoir être appelées depuis Form1.cs)
-        // Ajuster les propriétés des boutons (public pour pouvoir être appelées depuis Form1.cs)
-        public static void AjusterBoutons(Form form)
+        // Appliquer un style spécifique aux boutons
+        private static void ApplyButtonStyle(Button button)
         {
-            // Parcours tous les contrôles du formulaire
-            foreach (Control control in form.Controls)
+            button.Font = new Font("Comic Sans MS", 14, FontStyle.Bold);
+            button.ForeColor = Color.White;
+            button.BackColor = Color.DodgerBlue;
+            button.Width = 200;
+            button.Height = 80;
+            button.TextAlign = ContentAlignment.MiddleCenter;
+        }
+
+        // Appliquer un style spécifique aux labels
+        private static void ApplyLabelStyle(Label label)
+        {
+            label.Font = new Font("Comic Sans MS", 14);
+            label.ForeColor = Color.Black;
+        }
+
+        // Positionner les éléments dans le formulaire
+        private static void PositionElements(Form form)
+        {
+            // LblOrdinateur (en haut à gauche)
+            Label lblOrdinateur = form.Controls["LblOrdinateur"] as Label;
+            if (lblOrdinateur != null)
+                lblOrdinateur.Location = new Point(10, 10);  // Positionner en haut à gauche
+
+            // LblTimer (en haut à droite)
+            Label lblTimer = form.Controls["LblTimer"] as Label;
+            if (lblTimer != null)
+                lblTimer.Location = new Point(form.ClientSize.Width - lblTimer.Width - 10, 10); // En haut à droite
+
+            // LblResultat (au centre au-dessus des boutons)
+            Label lblResultat = form.Controls["LblResultat"] as Label;
+            if (lblResultat != null)
+                lblResultat.Location = new Point((form.ClientSize.Width - lblResultat.Width) / 2, 100); // Centré, juste au-dessus des boutons
+
+            // LblScore (en bas et centré)
+            Label lblScore = form.Controls["LblScore"] as Label;
+            if (lblScore != null)
+                lblScore.Location = new Point((form.ClientSize.Width - lblScore.Width) / 2, form.ClientSize.Height - lblScore.Height - 30); // Centré en bas
+
+            // Boutons : Positionner au centre de l'écran
+            Button btnPierre = form.Controls["BtnPierre"] as Button;
+            Button btnCiseaux = form.Controls["BtnCiseaux"] as Button;
+            Button btnPapier = form.Controls["BtnPapier"] as Button;
+
+            int buttonWidth = 200;
+            int totalWidth = 3 * buttonWidth + 40;  // Espace entre les boutons
+
+            if (btnPierre != null && btnCiseaux != null && btnPapier != null)
             {
-                if (control is Button)
-                {
-                    Button button = (Button)control;
-
-                    // Assurez-vous que les boutons remplissent l'espace sans redimensionner excessivement
-                    button.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-
-                    //// Centrer le texte des boutons
-                    button.TextAlign = ContentAlignment.MiddleCenter;
-
-                    // Modifier la taille du texte pour qu'il soit bien lisible
-                    button.Font = new Font("Comic Sans MS", 14, FontStyle.Bold);
-
-                    // Ajuster la couleur du texte pour un bon contraste
-                    button.ForeColor = Color.White;
-                    button.BackColor = Color.DodgerBlue; // Couleur de fond des boutons
-                }
+                btnPierre.Location = new Point((form.ClientSize.Width - totalWidth) / 2, 200); // Centré horizontalement
+                btnCiseaux.Location = new Point(btnPierre.Left + buttonWidth + 10, 200);  // À droite de BtnPierre
+                btnPapier.Location = new Point(btnCiseaux.Left + buttonWidth + 10, 200);  // À droite de BtnCiseaux
             }
         }
     }
