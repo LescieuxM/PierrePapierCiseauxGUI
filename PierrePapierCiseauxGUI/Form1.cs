@@ -40,6 +40,9 @@ namespace PierrePapierCiseauxGUI
             };
             timer.Tick += new EventHandler(Timer_Tick);
             timer.Start(); // Démarre le timer
+
+            // Afficher immédiatement le temps restant à 5 secondes
+            LblOrdinateur.Text = "A vous de jouer !";
         }
 
         // Tick du timer du joueur, affiche le temps restant
@@ -56,7 +59,7 @@ namespace PierrePapierCiseauxGUI
                 if (!joueurAChoisi)
                 {
                     // Si le joueur n'a pas fait de choix
-                    LblOrdinateur.Text = "Temps écoulé ! Vous devez choisir rapidement.";
+                    LblTimer.Text = "Temps écoulé ! Vous devez choisir rapidement.";
                     // Tu peux ajouter ici un comportement par défaut pour l'ordinateur si nécessaire
                 }
             }
@@ -154,9 +157,8 @@ namespace PierrePapierCiseauxGUI
             tempsRestant = 5;  // Réinitialiser le temps
             joueurAChoisi = false;
             ordinateurAChoisi = false;
-            LblMessage.Text = "Choisissez votre option!";
             LblOrdinateur.Text = "";  // Effacer le message "L'ordinateur réfléchit..."
-            // LblResultat.Text = "";  // Efface le dernier résultat affiché
+            LblOrdinateur.Text = "A vous de jouer !";
             timer.Start(); // Redémarrer le timer pour le joueur
         }
 
@@ -192,6 +194,11 @@ namespace PierrePapierCiseauxGUI
             // Démarrer le timer de l'ordinateur
             LblOrdinateur.Text = "L'ordinateur réfléchit...";
             timerOrdinateur.Start();
+        }
+
+        private void LblTimer_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -31,7 +31,6 @@
             this.BtnPierre = new System.Windows.Forms.Button();
             this.BtnCiseaux = new System.Windows.Forms.Button();
             this.BtnPapier = new System.Windows.Forms.Button();
-            this.LblMessage = new System.Windows.Forms.Label();
             this.LblResultat = new System.Windows.Forms.Label();
             this.LblScore = new System.Windows.Forms.Label();
             this.LblOrdinateur = new System.Windows.Forms.Label();
@@ -70,15 +69,6 @@
             this.BtnPapier.UseVisualStyleBackColor = true;
             this.BtnPapier.Click += new System.EventHandler(this.BtnPapier_Click);
             // 
-            // LblMessage
-            // 
-            this.LblMessage.AutoSize = true;
-            this.LblMessage.Location = new System.Drawing.Point(244, 49);
-            this.LblMessage.Name = "LblMessage";
-            this.LblMessage.Size = new System.Drawing.Size(109, 13);
-            this.LblMessage.TabIndex = 3;
-            this.LblMessage.Text = "Choisissez une option";
-            // 
             // LblResultat
             // 
             this.LblResultat.AutoSize = true;
@@ -101,9 +91,8 @@
             this.LblOrdinateur.AutoSize = true;
             this.LblOrdinateur.Location = new System.Drawing.Point(81, 107);
             this.LblOrdinateur.Name = "LblOrdinateur";
-            this.LblOrdinateur.Size = new System.Drawing.Size(35, 13);
+            this.LblOrdinateur.Size = new System.Drawing.Size(0, 13);
             this.LblOrdinateur.TabIndex = 6;
-            this.LblOrdinateur.Text = "label1";
             // 
             // LblVictoires
             // 
@@ -134,9 +123,9 @@
             this.LblTimer.AutoSize = true;
             this.LblTimer.Location = new System.Drawing.Point(512, 49);
             this.LblTimer.Name = "LblTimer";
-            this.LblTimer.Size = new System.Drawing.Size(35, 13);
+            this.LblTimer.Size = new System.Drawing.Size(0, 13);
             this.LblTimer.TabIndex = 7;
-            this.LblTimer.Text = "label1";
+            this.LblTimer.Click += new System.EventHandler(this.LblTimer_Click);
             // 
             // Form1
             // 
@@ -145,7 +134,6 @@
             this.Controls.Add(this.LblOrdinateur);
             this.Controls.Add(this.LblScore);
             this.Controls.Add(this.LblResultat);
-            this.Controls.Add(this.LblMessage);
             this.Controls.Add(this.BtnPapier);
             this.Controls.Add(this.BtnCiseaux);
             this.Controls.Add(this.BtnPierre);
@@ -161,7 +149,6 @@
         private System.Windows.Forms.Button BtnPierre;
         private System.Windows.Forms.Button BtnCiseaux;
         private System.Windows.Forms.Button BtnPapier;
-        private System.Windows.Forms.Label LblMessage;
         private System.Windows.Forms.Label LblResultat;
         private System.Windows.Forms.Label LblScore;  // Déclaration du label pour le score
         private System.Windows.Forms.Label LblOrdinateur;
